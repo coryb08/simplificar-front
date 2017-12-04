@@ -15,5 +15,3 @@ function uploadData(){
       .then(res=> res.json())
       .then(console.log)
   }
-//   // .then(res => res.json())
-//   // .then(console.log)
