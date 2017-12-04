@@ -1,6 +1,6 @@
 let upload = document.getElementById('upload')
 upload.addEventListener('click',uploadData())
-let data = CKEDITOR.instances.editor1.getData()
+var data = CKEDITOR.instances.editor1.getData()
 
 
 function uploadData(){
