@@ -1,11 +1,17 @@
 let upload = document.getElementById('upload')
+<<<<<<< HEAD
 upload.addEventListener('click',uploadData())
 var data = CKEDITOR.instnces.editor1.getData()
+=======
+upload.addEventListener('click',uploadData)
+
+>>>>>>> 38422cf920e98b8dce8ce1eee819fc606021a79c
 
 
 function uploadData(){
-  fetch("https://loalhost/3000/template",{method: "POST",
-      header: {"Content-Type": "application/json"},
+  var data = CKEDITOR.instances.editor1.getData()
+  fetch("http://localhost:3000/templates",{method: "POST",
+      headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         name: "Template 1",
         description: "This is a test",
