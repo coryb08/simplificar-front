@@ -1,0 +1,21 @@
+.outer{
+  display: box;
+  position:relative;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+.inner{
+  position: absolute;
+  width:200px;
+  height:200px;
+  margin: 0 auto;
+  background: red:
+}
+
+#image{
+  width: 200px;
+  height: 200px;
+
+}

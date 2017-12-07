@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet" href="css/master.css">
+</head>
+<body>
+  <header>
+    <ul>
+      <div class="">
+        <!-- <li id="image" draggable="true" ondragstart="drag(event)" ondrop="drop(event)">Image</li>
+        <li id="div" onclick="div" draggable="true" ondragstart="drag(event)" ondrop="drop(event)">Div</li>
+        <li id="textArea" onclick="textArea()" draggable="true" ondragstart="drag(event)" ondrop="drop(event)">TextArea</li> -->
+        <li id="image" draggable="true" ondragstart="drag(event)">Image</li>
+        <li id="div" onclick="div" draggable="true" ondragstart="drag(event)">Div</li>
+        <li id="textArea" onclick="textArea()" draggable="true" ondragstart="drag(event)">TextArea</li>
+      </div>
+    </ul>
+  </header>
+
+<p>Drag the image into the rectangle:</p>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div id="modalContent"></div>
+  </div>
+
+</div>
+
+<!-- <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div> -->
+<div id="div1" ondragover="allowDrop(event)" ondrop="drop(event)" ></div>
+<script type="text/javascript" src="dragAndDrop.js"></script>
+
+</body>
+</html>
