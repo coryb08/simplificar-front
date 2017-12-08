@@ -122,7 +122,7 @@ function getUserInfo(userObj) {
     resultsUl.appendChild(list)
   })
   eraserDiv.appendChild(resultsUl)
-  eraserDiv.style= "background-color: red"
+
   let create = document.createElement("button")
   create.innerText = "Create Template"
   create.addEventListener("click", () => {editor2(userObj)} )
@@ -138,12 +138,14 @@ function editor(userObj, name="") {
   let eraserDiv = document.getElementById("eraserDiv")
   eraserDiv.innerHTML=""
   resultsUl = document.createElement("ul")
+  resultsUl.setAttribute("class", "resultsUl")
   userObj.templates.forEach(template => {
 
     let list = document.createElement("p")
-    list.setAttribute("class", "tempList")
+    list.setAttribute("class", "tempNameList")
     list.innerText=template.name
     let iTagDrag = document.createElement("input")
+    iTagDrag.setAttribute("class", "tempList")
     iTagDrag.setAttribute("type", "button")
     iTagDrag.setAttribute("value", "Edit")
     iTagDrag.addEventListener("click", function() {
@@ -172,6 +174,7 @@ function editor(userObj, name="") {
   CKEDITOR.replace( 'editor1' )
   let upload = document.createElement("button")
   upload.id="updateButton"
+  upload.innerText = "Update"
   var data = CKEDITOR.instances.editor1.getData()
   upload.addEventListener('click',uploadData)
 
@@ -217,11 +220,11 @@ function editor2(userObj) {
   let editId = document.getElementById("editId")
 
   editId.innerHTML = ""
-  editId.innerHTML= `<form id="createTemplate">
-  <label><br>Name<input id="template_name" type="text" name="template_name"></input></label><br>
+  editId.innerHTML= `<form id="createTemplate" style="color: white">
+  <label><br>Name<br><input id="template_name"  type="text" name="template_name"></input></label><br>
   <label>Description<br><textarea id="description" type="text" name="description"></textarea></label><br>
   <textarea id="editor1" type="text" name="content"></textarea><br>
-  <input id="upload" type="submit"></input>
+  <input id="upload" type="submit" style="color: black"></input>
   </form>`
 
   editor1 = document.getElementById("editor1")

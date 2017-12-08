@@ -7,13 +7,12 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+
   align-self: center;
-  /*align-items: center;*/
+  margin: 0 auto;
   display: flex;
   justify-content: center;
-
+  float: center
 
 }
 
@@ -29,7 +28,7 @@
 	padding: 10px 20px !important;
 	font-weight: 200;
   border-radius: 0px;
-
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 	background-color: rgba(0, 0, 0, 0.0);
 	transition-duration: 0.4s;
 	color: white;
@@ -98,6 +97,7 @@
 
 .formAlt{
   padding-bottom: 30px
+
 }
 
 .tempList {
@@ -107,10 +107,11 @@
 }
 
 .resultsUl{
-  width: 100%;
-   flex-grow: 12;
+  width: 90%;
+   flex-grow: 10;
   padding-left: 0em;
-  margin-right: 10em
+  margin-right: 10em;
+  float: left
 }
 
 .tempNameList {
