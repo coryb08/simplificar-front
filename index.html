@@ -1,22 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-  <script src="https://cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
-</head>
-<body>
-  <div id="userHeader" style="text-align: center;">
-    <h1>User page</h1>
+function getUserInfo(userObj) {
+  let signInForm = document.getElementById("signUpForm").remove()
+  let eraserDiv = document.getElementById("eraserDiv")
+  eraserDiv.innerHTML = ""
 
-    <div id="buttonDiv"></div>
-  </div>
+  let divClear = document.getElementById("signIn2").remove()
 
-  <div id="create_form"></div>
-  <div id="results"> </div>
+  let formDiv = document.getElementById("formDiv")
+  let button = document.createElement("button")
+  button.innerText =("Create Template")
+  formDiv.appendChild(button)
+  formDiv.addEventListener("click", editor)
 
 
-  </div>
-  <script type="text/javascript" src="index.js"></script>
-</body>
-</html>
+  resultsUl = document.createElement("ul")
+  console.log(userObj.templates)
+
+  userObj.templates.forEach(template => {
+    console.log(`inside the array`)
+    console.log(template)
+    let li = document.createElement("li")
+    li.innerText=template.name
+    let iTagDrag = document.createElement("input")
+    iTagDrag.setAttribute("type", "button")
+    iTagDrag.setAttribute("value", "Legacy Editor")
+    iTagDrag.addEventListener("click", function() {
+      editorNew(userObj, template.name)
+    })
+    li.appendChild(iTagDrag)
+    resultsUl.appendChild(li)
+    // eraserDiv.innerHTML += `
+    // <p class="templateList">${template.name} </p><input onclick="editor()" type="button" value="Legacy Editor"/> <input onclick='editorNew(/+ userObj+/)' type="button" value="Drag n' Drop Editor"/>
+    // <br>
+    // `
+
+
+})
+eraserDiv.appendChild(resultsUl)
+
+}

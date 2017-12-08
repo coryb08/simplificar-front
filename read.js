@@ -6,4 +6,4 @@
 div=document.getElementById('editor')
 
 // div.appendChild(iframe)
-div.innerHTML=`<iframe src="dragAndDrop.html" height="800" width="800"></iframe>`
+div.innerHTML=`<iframe id="frame1" src="dragAndDrop.html" height="800" width="800"></iframe>`

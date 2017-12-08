@@ -49,7 +49,7 @@ function drop(ev) {
       new_image.id = `image-${document.querySelectorAll("#div1 img").length + 1 }`
       modalContent.innerHTML = imageForm()
       // debugger;
-      displayModal(new_image,data)
+      displayModal(new_image,data,ev)
       console.log(new_image.id)
       div1.appendChild(new_image)
   }else {
@@ -67,10 +67,11 @@ function drop(ev) {
     //   else{
     //     new_y = container_height - current_image.height
     //   }
-      current_image.style=`position: absolute; left:${(ev.x - data.x)}px;
-       top:${(ev.y - data.y)}px`
-       styles = window.getComputedStyle(current_image)
-      console.log(`position=${styles.position}, left:${styles.left}, top:${styles.right}`)
+    styles = window.getComputedStyle(current_image)
+      // debugger;
+      current_image.style=`position: absolute; left:${((ev.x - data.x)+ styles.left)}px;
+       top:${((ev.y - data.y)+ styles.top)}px`
+      console.log(`position=${styles.position}, left:${styles.left}, top:${styles.top}`)
       console.log(ev)
     // debugger;
   }
@@ -80,26 +81,30 @@ function drop(ev) {
 //   ev.target.appendChild(image)
 //   image.style=`position: relative; left:${ev.x}px; top:${ev.y}px`
 // }
-function displayModal(image,data){
+function displayModal(image,data,ev){
     modal.style.display = "block";
-    // debugger;
     modal.addEventListener("submit",()=>updateElement(image,data,event))
   }
+
   function updateElement(image,data,event){
     event.preventDefault()
+
+    //set attributes from modal form and set it to the image
     modalImage = document.getElementById('imageForm')
-    // debugger;
-    // let image = document.createElement('img')
     image.setAttribute("src", modalImage.elements.url.value);
     image.setAttribute("width", modalImage.elements.width.value);
     image.setAttribute("height", modalImage.elements.height.value);
     image.setAttribute("alt", modalImage.elements.alt.value);
     image.setAttribute("draggable",true)
     image.setAttribute("ondragstart","drag(event)")
-    image.style=`position: absolute; left:${data.x}px; top:${data.y}px;`
-    // appendChild(ev,event,image)
+    image.style=`position: absolute; left:${modalImage.elements.alt.hSpace}px; top:${modalImage.elements.alt.vSpace}px;`
     modalContent.innerHTML=""
     modal.style.display = "none"
+    // console.log(image)
+    // console.log(data)
+    // console.log(window.getComputedStyle(image).left)
+    // console.log(window.getComputedStyle(image).top)
+    // console.log(event)
   }
 
 

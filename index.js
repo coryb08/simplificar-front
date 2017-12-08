@@ -54,10 +54,11 @@ function landingPage(users) {
   function editor() {
 
     editorElement = document.createElement("textarea")
+    editorelement.innerText= "<h1>this is a test</h1>"
     editorElement.id = "editor1"
     results = document.getElementById("results")
     results.appendChild(editorElement)
-    CKEDITOR.replace( 'editor1' )
+    // CKEDITOR.replace( 'editor1' )
 
 
 
