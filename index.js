@@ -11,13 +11,13 @@ function signIn() {
   divContain.innerHTML = `
   <form id="signUpForm" name="signupform" class="formAlt">
   <br>
-  <input type="text" placeholder="<username>" name="name" class="transparent-input"><br>
-  <input type="submit" value="Sign Up"></form>
+  <input type="text" placeholder="<username>" name="name" class="transparent-input"><br><br>
+  <input type="submit" value="Sign Up" class="button456"></form>
   </form>
   <form id="signInForm" name="signinform">
   <br>
-  <input type="text" placeholder="<username>" name="name" class="transparent-input"><br>
-  <input type="submit" value="Sign In"></form>
+  <input type="text" placeholder="<username>" name="name" class="transparent-input"><br><br>
+  <input type="submit" value="Sign In" class="button456"></form>
   </form>
   `
   userHead.appendChild(divContain)
@@ -27,6 +27,7 @@ function signIn() {
   form2.addEventListener("submit", login)
 
 }
+console.log(document.getElementById("div1"))
 signIn()
 
 function login(event) {
@@ -94,39 +95,66 @@ function showErrors(json) {
 }
 
 
-function getUserInfo(arg) {
+
+function getUserInfo(userObj) {
   let signInForm = document.getElementById("signUpForm").remove()
   let eraserDiv = document.getElementById("eraserDiv")
   eraserDiv.innerHTML = ""
-
   let divClear = document.getElementById("signIn2").remove()
-
   let formDiv = document.getElementById("formDiv")
-  let button = document.createElement("button")
-  button.innerText =("Create Template")
-  formDiv.appendChild(button)
-  formDiv.addEventListener("click", editor)
-
   resultsUl = document.createElement("ul")
+  console.log(userObj.templates)
+  userObj.templates.forEach(template => {
+    console.log(`inside the array`)
+    console.log(template)
+    let list = document.createElement("p")
+    list.setAttribute("class", "tempList")
+    list.innerText=template.name
+    let iTagDrag = document.createElement("input")
+    iTagDrag.setAttribute("type", "button")
+    iTagDrag.setAttribute("value", "Edit")
+    iTagDrag.addEventListener("click", function() {
+      editor(userObj, template.name)
+    })
+    list.appendChild(iTagDrag)
+    resultsUl.appendChild(list)
+})
+eraserDiv.appendChild(resultsUl)
 
-  arg.templates.forEach(template => {
-    templateList = document.createElement("li")
-    templateList.innerText = template.name
-    resultsUl.appendChild(templateList)
-  })
-  eraserDiv.appendChild(resultsUl)
 }
 
 
-function editor() {
+function editor(userObj, name) {
+  store = userObj
   let editId = document.getElementById("editId")
-  editorElement = document.createElement("div")
+  editId.innerHTML = ""
+  editorElement = document.createElement("textarea")
   editorElement.id = "editor1"
+
+  userObj.templates.forEach(template => {
+    if (template.name === name) {
+      editorElement.innerHTML = template.content
+    }
+  })
 
   editId.appendChild(editorElement)
 
   CKEDITOR.replace( 'editor1' )
+  let upload = document.createElement("button")
+  var data = CKEDITOR.instances.editor1.getData()
+  upload.addEventListener('click',uploadData)
 
-
-
+  function uploadData(){
+    var data = CKEDITOR.instances.editor1.getData()
+    fetch("http://localhost:3000/templates",{method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          name: name,
+          content: data,
+          user_id: userObj.id
+        })})
+        .then(res=> res.json())
+        .then(json => editor(store, json.name))
+    }
+    editId.appendChild(upload)
 }

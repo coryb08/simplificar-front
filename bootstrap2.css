@@ -20,14 +20,29 @@
   font-family: "Courier New", Courier, monospace
 }
 
+.button456{
+	border-top: 1px solid #FFFFFF;
+	border-left: 1px solid #FFFFFF;
+	border-right: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+	padding: 10px 20px !important;
+	font-weight: 200;
+  border-radius: 0px;
+
+	background-color: rgba(0, 0, 0, 0.0);
+	transition-duration: 0.4s;
+	color: white;
+	letter-spacing: 3px
+}
+
 
 .background {
-  background-image: url(./images/software-computer-code-1940x900_35196.jpg);
+  background-image: url(./images/good.jpg);
   height: 100%;
 	position: relative;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 	background-attachment: fixed;
 }
 
@@ -35,17 +50,8 @@
   z-index: 1;
 }
 
-.mask {
-	width: 100%;
-	height: 100%;
-	background-color:#352a32;
-	opacity: 0.8;
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-
+.in-back{
+  z-index: 0
 }
 
 
@@ -67,8 +73,8 @@
 
 .transparent-input {
   background-color: rgba(0, 0, 0, 0) !important;
-  border-bottom: black;
-  color: black;
+  border-bottom: white;
+  color: white;
   text-align: center;
   font-weight: 500;
   font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
@@ -76,7 +82,7 @@
   border: 0;
   outline: 0;
   background: transparent;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid white;
 }
 
 .transparent-input3 {
@@ -92,9 +98,13 @@
   padding-bottom: 30px
 }
 
+.tempList {
+  color: white
+}
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: black;
+  color: gray;
   opacity: 0.9;
 
   font-weight: 100;

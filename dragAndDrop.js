@@ -14,12 +14,6 @@ document.addEventListener("DOMContentLoaded",()=>{
       modal.style.display = "none";
     }
 
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-    //     }
-    // }
-
 })
 
 // Functions
@@ -27,7 +21,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 function allowDrop(ev) {
     ev.preventDefault();
-    console.log(ev)
 
 }
 
@@ -56,7 +49,7 @@ function drop(ev) {
       new_image.id = `image-${document.querySelectorAll("#div1 img").length + 1 }`
       modalContent.innerHTML = imageForm()
       // debugger;
-      displayModal(new_image)
+      displayModal(new_image,data)
       console.log(new_image.id)
       div1.appendChild(new_image)
   }else {
@@ -74,23 +67,25 @@ function drop(ev) {
     //   else{
     //     new_y = container_height - current_image.height
     //   }
-    //   current_image.style=`position: absolute; left:${ev.x}px; top:${ev.y}px`
-    //   console.log(`position: absolute; left:${ev.x}px; top:${ev.y}`)
-    //   console.log(ev)
-    debugger;
+      current_image.style=`position: absolute; left:${(ev.x - data.x)}px;
+       top:${(ev.y - data.y)}px`
+       styles = window.getComputedStyle(current_image)
+      console.log(`position=${styles.position}, left:${styles.left}, top:${styles.right}`)
+      console.log(ev)
+    // debugger;
   }
 }
 
-function appendChild(ev,event,image){
-  ev.target.appendChild(image)
-  image.style=`position: relative; left:${ev.x}px; top:${ev.y}px`
-}
-function displayModal(image){
+// function appendChild(ev,event,image){
+//   ev.target.appendChild(image)
+//   image.style=`position: relative; left:${ev.x}px; top:${ev.y}px`
+// }
+function displayModal(image,data){
     modal.style.display = "block";
     // debugger;
-    modal.addEventListener("submit",()=>updateElement(image,event))
+    modal.addEventListener("submit",()=>updateElement(image,data,event))
   }
-  function updateElement(image,event){
+  function updateElement(image,data,event){
     event.preventDefault()
     modalImage = document.getElementById('imageForm')
     // debugger;
@@ -101,7 +96,7 @@ function displayModal(image){
     image.setAttribute("alt", modalImage.elements.alt.value);
     image.setAttribute("draggable",true)
     image.setAttribute("ondragstart","drag(event)")
-    image.setAttribute("ond")
+    image.style=`position: absolute; left:${data.x}px; top:${data.y}px;`
     // appendChild(ev,event,image)
     modalContent.innerHTML=""
     modal.style.display = "none"
